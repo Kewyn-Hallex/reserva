@@ -37,7 +37,7 @@ function confirmarExclusao() {
                             <a class="nav-link active" aria-current="page" href="../initPage.php"><i class="bi bi-house-fill"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pages/user.php"><i class="bi bi-person-lines-fill"></i> Usuario</a>
+                            <a class="nav-link" href="user.php"><i class="bi bi-person-lines-fill"></i> Usuario</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"><i class="bi bi-bag-fill"></i> Minhas compras</a>
