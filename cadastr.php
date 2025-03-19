@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($usuario === $usuario_correto && $senha === $senha_correta) {
         $_SESSION["usuario"] = $usuario;
-        header("Location: initPage.php");
+        header("Location: index.php");
         exit();
     } else {
         $erro = "Usuário ou senha incorretos.";
