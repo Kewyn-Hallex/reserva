@@ -22,7 +22,7 @@ function confirmarExclusao() {
 
     <nav class="navbar navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../initPage.php"><i class="bi bi-ticket-detailed"></i> ReserveNow</a>
+            <a class="navbar-brand" href="../index.php"><i class="bi bi-ticket-detailed"></i> ReserveNow</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,7 +34,7 @@ function confirmarExclusao() {
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../initPage.php"><i class="bi bi-house-fill"></i> Home</a>
+                            <a class="nav-link active" aria-current="page" href="../index.php"><i class="bi bi-house-fill"></i> Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="user.php"><i class="bi bi-person-lines-fill"></i> Usuario</a>
