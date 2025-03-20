@@ -1,8 +1,5 @@
 <?php
-if (isset($_GET["evento_id"])) {
-    $evento_id = $_GET["evento_id"];
-    echo "Evento selecionado: " . $evento_id;
-}
+$evento_id = isset($_GET['evento_id']) ? $_GET['evento_id'] : null;
 ?>
 
 <!DOCTYPE html>

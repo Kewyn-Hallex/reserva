@@ -10,6 +10,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $valor_ingresso = $_POST["valor_ingresso"];
     $redes_sociais = $_POST["redes_sociais"];
 
+    // Diretório onde as imagens serão salvas
+    $uploadDir = "uploads/";
+    if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
+    $imagemPath = "";
+    if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] === UPLOAD_ERR_OK) {
+        $extensao = pathinfo($_FILES["imagem"]["name"], PATHINFO_EXTENSION);
+        $nomeArquivo = uniqid() . "." . $extensao;
+        $imagemPath = $uploadDir . $nomeArquivo;
+
+        if (!move_uploaded_file($_FILES["imagem"]["tmp_name"], $imagemPath)) {
+            die("Erro ao salvar a imagem.");
+        }
+    }
+
     $evento = [
         'nome' => $nome,
         'descricao' => $descricao,
@@ -17,7 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'data_termino' => $data_termino,
         'local_evento' => $local_evento,
         'valor_ingresso' => $valor_ingresso,
-        'redes_sociais' => $redes_sociais
+        'redes_sociais' => $redes_sociais,
+        'imagem' => $imagemPath
     ];
 
     if (!isset($_SESSION['eventos'])) {
@@ -29,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: meusEventos.php");
     exit();
 }
+
 ?>
 
 
@@ -78,32 +97,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </nav>
 
-    <form id="formulario" class="formulario-login" method="POST">
+    <form id="formulario" class="formulario-login" method="POST" enctype="multipart/form-data">
         <h2>Evento</h2>
 
-        <label for="nome">Nome do evento:</label><br>
-        <input type="text" id="nome" name="nome" required><br>
+        <label for="nome">Nome do evento:</label>
+        <input type="text" id="nome" name="nome" required>
 
-        <label for="descricao">Descrição:</label><br>
-        <input type="text" id="descricao" name="descricao" required><br>
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" name="descricao" required>
 
-        <label for="data_inicio">Data e Horário de início:</label><br>
-        <input type="datetime-local" id="data_inicio" name="data_inicio" required><br>
+        <label for="data_inicio">Data e Horário de início:</label>
+        <input type="datetime-local" id="data_inicio" name="data_inicio" required>
 
-        <label for="data_termino">Data e Horário do término:</label><br>
-        <input type="datetime-local" id="data_termino" name="data_termino" required><br>
+        <label for="data_termino">Data e Horário do término:</label>
+        <input type="datetime-local" id="data_termino" name="data_termino" required>
 
-        <label for="local_evento">Local do Evento:</label><br>
-        <input type="text" id="local_evento" name="local_evento" required><br>
+        <label for="local_evento">Local do Evento:</label>
+        <input type="text" id="local_evento" name="local_evento" required>
 
-        <label for="valor_ingresso">Valor do ingresso:</label><br>
-        <input type="text" id="valor_ingresso" name="valor_ingresso" required><br>
+        <label for="valor_ingresso">Valor do ingresso:</label>
+        <input type="text" id="valor_ingresso" name="valor_ingresso" required>
 
-        <label for="redes_sociais">Link das Redes Sociais:</label><br>
-        <textarea id="redes_sociais" name="redes_sociais"></textarea><br>
+        <label for="redes_sociais">Link das Redes Sociais:</label>
+        <textarea id="redes_sociais" name="redes_sociais"></textarea>
+
+        <label for="imagem">Imagem do Evento:</label>
+        <input type="file" id="imagem" name="imagem" accept="image/*" required>
 
         <input type="submit" value="Cadastrar">
     </form>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
