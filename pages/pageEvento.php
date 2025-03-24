@@ -1,5 +1,12 @@
 <?php
-$evento_id = isset($_GET['evento_id']) ? $_GET['evento_id'] : null;
+if (isset($_GET['evento_id'])) {
+    $evento_id = $_GET['evento_id'];
+    // Agora você pode usar $evento_id para buscar detalhes do evento no banco de dados
+    // Exemplo de consulta ao banco para buscar o evento pelo ID:
+    // $evento = buscarEventoPorId($evento_id); // Substitua com sua função de busca
+} else {
+    echo "Evento não encontrado.";
+}
 ?>
 
 <!DOCTYPE html>

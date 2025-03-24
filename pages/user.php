@@ -36,6 +36,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="../pages/eventos.php"><i class="bi bi-plus-lg"></i> Criar um Evento</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/meusEventos.php"><i class="bi bi-tags-fill"></i> Meu Eventos</a>
+                        </li>
                     </ul>
                 </div>
             </div>

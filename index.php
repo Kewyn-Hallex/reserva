@@ -35,7 +35,7 @@ if (!isset($_SESSION["usuario"])) {
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link active" href="#"><i class="bi bi-house-fill"></i> Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="pages/user.php"><i class="bi bi-person-lines-fill"></i> Usuario</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-bag-fill"></i> Minhas compras</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pages/minhasCompras.php"><i class="bi bi-bag-fill"></i> Minhas compras</a></li>
                     </ul>
                 </div>
             </div>
@@ -54,7 +54,7 @@ if (!isset($_SESSION["usuario"])) {
             <div class="row">
                 <?php if (!empty($_SESSION['eventos'])): ?>
                     <?php foreach ($_SESSION['eventos'] as $evento): ?>
-                        <div class="col-md-4">
+                        <div>
                             <div class="card mb-3">
                                 <?php if (!empty($evento['imagem'])): ?>
                                     <img src="uploads/<?= htmlspecialchars($evento['imagem']) ?>" class="card-img-top" alt="Imagem do Evento">
@@ -66,28 +66,20 @@ if (!isset($_SESSION["usuario"])) {
                                     <p><strong>Data:</strong> <?= htmlspecialchars($evento['data_inicio']) ?></p>
                                     <p><strong>Local:</strong> <?= htmlspecialchars($evento['local_evento']) ?></p>
                                     <p><strong>Valor:</strong> R$ <?= htmlspecialchars($evento['valor_ingresso']) ?></p>
-                                    <a href="pages/pageEvento.php?evento_id=<?= urlencode($evento['id']) ?>">
-                                        <button class="btn btn-primary">Saiba mais</button>
-                                    </a>
+                                    <a href="pages/pageEvento.php" class="btn btn-primary">Saiba mais</a>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <p class="text-center">Nenhum evento cadastrado.</p>
+                    <p class="text-center">Nenhum evento encontrado.</p>
                 <?php endif; ?>
             </div>
         </div>
-
     </div>
 
-    <script>
-        function redirecionarParaEvento(eventoId) {
-            window.location.href = `pages/pageEvento.php?evento_id=${eventoId}`;
-        }
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 
 </html>
