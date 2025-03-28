@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data_termino = $_POST["data_termino"];
     $local_evento = $_POST["local_evento"];
     $valor_ingresso = $_POST["valor_ingresso"];
-    $redes_sociais = $_POST["redes_sociais"];
+    $evento_maiores = $_POST["evento_maiores"];
 
     // Diretório onde as imagens serão salvas
     $uploadDir = "uploads/";
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'data_termino' => $data_termino,
         'local_evento' => $local_evento,
         'valor_ingresso' => $valor_ingresso,
-        'redes_sociais' => $redes_sociais,
+        'evento_maiores' => $evento_maiores,
         'imagem' => $imagemPath
     ];
 
@@ -118,8 +118,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="valor_ingresso">Valor do ingresso:</label>
         <input type="text" id="valor_ingresso" name="valor_ingresso" required>
 
-        <label for="redes_sociais">Link das Redes Sociais:</label>
-        <textarea id="redes_sociais" name="redes_sociais"></textarea>
+        <label for="evento_maiores">Evento para maiores de 18 anos?</label>
+        <select id="evento_maiores" name="evento_maiores" required>
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+        </select>
 
         <label for="imagem">Imagem do Evento:</label>
         <input type="file" id="imagem" name="imagem" accept="image/*" required>

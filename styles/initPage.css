@@ -52,28 +52,34 @@ body {
 .container-eventos {
     width: 100%;
     display: flex;
-    flex-wrap: wrap;  /* Garante que os cards não ultrapassem a largura */
+    flex-wrap: wrap;
+    /* Garante que os cards não ultrapassem a largura */
     justify-content: space-around;
-    gap: 20px; /* Espaço entre os cards */
+    gap: 20px;
+    /* Espaço entre os cards */
 }
 
 .card {
     display: flex;
     flex-direction: column;
-    height: 350px;  /* Altura fixa */
+    height: 350px;
+    /* Altura fixa */
     overflow: hidden;
     flex-grow: 1;
     font-family: "Poppins", sans-serif;
 }
 
 .card-body {
-    overflow: auto;  /* Garante que o conteúdo não ultrapasse */
+    overflow: auto;
+    /* Garante que o conteúdo não ultrapasse */
     flex-grow: 1;
 }
 
 .card img {
-    object-fit: cover;  /* Garante que a imagem ocupe toda a largura e altura do card */
-    height: 200px;  /* Defina uma altura para as imagens */
+    object-fit: cover;
+    /* Garante que a imagem ocupe toda a largura e altura do card */
+    height: 200px;
+    /* Defina uma altura para as imagens */
 }
 
 .col-md-4 {

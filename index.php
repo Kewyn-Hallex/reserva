@@ -1,8 +1,22 @@
 <?php
 session_start();
 
+// Verifica se o usuário está logado
 if (!isset($_SESSION["usuario"])) {
-    header("Location: cadastr.php");
+    header("Location: cadastr.php"); // Se não estiver logado, redireciona para a página de cadastro
+    exit();
+}
+
+// Destruir a sessão e remover os cookies quando o usuário sair
+if (isset($_GET['logout'])) {
+    session_unset(); // Remove todas as variáveis de sessão
+    session_destroy(); // Destrói a sessão
+
+    // Remove os cookies de login
+    setcookie("usuario", "", time() - 3600, "/");
+    setcookie("senha", "", time() - 3600, "/");
+
+    header("Location: login.php"); // Redireciona para a página de login
     exit();
 }
 ?>
@@ -16,6 +30,7 @@ if (!isset($_SESSION["usuario"])) {
     <title>Reserve seu evento</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=18_up_rating" />
     <link rel="stylesheet" href="styles/initPage.css">
 </head>
 
@@ -54,8 +69,8 @@ if (!isset($_SESSION["usuario"])) {
             <div class="row">
                 <?php if (!empty($_SESSION['eventos'])): ?>
                     <?php foreach ($_SESSION['eventos'] as $evento): ?>
-                        <div>
-                            <div class="card mb-3">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
                                 <?php if (!empty($evento['imagem'])): ?>
                                     <img src="uploads/<?= htmlspecialchars($evento['imagem']) ?>" class="card-img-top" alt="Imagem do Evento">
                                 <?php else: ?>
@@ -66,6 +81,17 @@ if (!isset($_SESSION["usuario"])) {
                                     <p><strong>Data:</strong> <?= htmlspecialchars($evento['data_inicio']) ?></p>
                                     <p><strong>Local:</strong> <?= htmlspecialchars($evento['local_evento']) ?></p>
                                     <p><strong>Valor:</strong> R$ <?= htmlspecialchars($evento['valor_ingresso']) ?></p>
+
+                                    <?php if ($evento['evento_maiores'] == "Sim"): ?>
+                                        <p>
+                                            <span class="material-symbols-outlined" style="font-size: 35px;">
+                                                18_up_rating
+                                            </span>
+                                        </p>
+                                    <?php else: ?>
+                                        <p><strong></strong></p>
+                                    <?php endif; ?>
+
                                     <a href="pages/pageEvento.php" class="btn btn-primary">Saiba mais</a>
                                 </div>
                             </div>
@@ -76,6 +102,10 @@ if (!isset($_SESSION["usuario"])) {
                 <?php endif; ?>
             </div>
         </div>
+
+    </div>
+
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

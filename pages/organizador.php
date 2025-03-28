@@ -6,15 +6,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $telefone = $_POST["telefone"];
     $empresa = $_POST["empresa"];
-    $cnpj = $_POST["cnpj"];
-    $endereco = $_POST["endereco"];
-    $redes_sociais = $_POST["redes_sociais"];
+    $data = $_POST["data"];
+    $trabalhos = $_POST["trabalhos"];
 
     $dados = "Nome: $nome\nE-mail: $email\nTelefone: $telefone\n";
     $dados .= "Empresa: " . (!empty($empresa) ? $empresa : "Não informado") . "\n";
-    $dados .= "CNPJ: " . (!empty($cnpj) ? $cnpj : "Não informado") . "\n";
-    $dados .= "Endereço: " . (!empty($endereco) ? $endereco : "Não informado") . "\n";
-    $dados .= "Redes Sociais/Site: " . (!empty($redes_sociais) ? $redes_sociais : "Não informado") . "\n";
+    $dados .= "Data de Nascimento: " . (!empty($data) ? $data : "Não informado") . "\n";
+    $dados .= "Trabalhos Realizados: " . (!empty($trabalhos) ? $trabalhos : "Não informado") . "\n";
     $dados .= "------------------------------------\n";
 
     file_put_contents($arquivo, $dados, FILE_APPEND);
@@ -79,17 +77,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Telefone:</label><br>
         <input type="text" name="telefone" required><br>
 
+        <label>Data de Nascimento</label><br>
+        <input type="date" name="data"><br>
+
+        <label>Trabalhos Realizados(opcional):</label><br>
+        <input type="text" name="trabalhos"><br>
+
         <label>Nome da Empresa (opcional):</label><br>
         <input type="text" name="empresa"><br>
-
-        <label>CNPJ (opcional):</label><br>
-        <input type="text" name="cnpj"><br>
-
-        <label>Endereço (opcional):</label><br>
-        <textarea name="endereco"></textarea><br>
-
-        <label>Redes Sociais/Site (opcional):</label><br>
-        <input type="text" name="redes_sociais"><br>
         <input type="submit" value="Cadastrar">
     </form>
 
